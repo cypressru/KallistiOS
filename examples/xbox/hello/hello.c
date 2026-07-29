@@ -2,17 +2,17 @@
 
    examples/xbox/hello/hello.c
    Copyright (C) 2026 Andress Barajas
+   Copyright (C) 2026 Cypress
 */
 
-/* "Hello, Xbox!" — a runnable console program for the original Microsoft Xbox,
-   loaded over the network by kos-tool's xbox-load-ip.
+/* "Hello, Xbox!" — a freestanding loader diagnostic for the original
+   Microsoft Xbox, loaded over the network by kos-tool's xbox-load-ip.
 
-   There is no KOS Xbox arch yet (no libc, no video/console driver), so this is
-   a freestanding guest that talks straight to the loader. xbox-load-ip
-   publishes a small header at XBOX_KOSLOAD_BASE -- a magic value plus a syscall
-   trampoline -- and the guest calls syscall(WRITE, 1, ...) to print to the host
-   console and syscall(EXIT) to hand control back. This is the same guest ABI
-   kos-tool's own console-test / xbox-video-test examples use.
+   This intentionally does not link KOS. xbox-load-ip publishes a small header
+   at XBOX_KOSLOAD_BASE -- a magic value plus a syscall trampoline -- and the
+   guest calls syscall(WRITE, 1, ...) to print to the host console and
+   syscall(EXIT) to hand control back. This is the same guest ABI kos-tool's
+   own console-test / xbox-video-test examples use.
 
    Run:  kos-tool -x hello.elf      (see the Makefile 'run' target) */
 

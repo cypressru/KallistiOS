@@ -2,20 +2,20 @@
 #
 # examples/xbox/hello/Makefile
 # Copyright (C) 2026 Andress Barajas
+# Copyright (C) 2026 Cypress
 #
 
 # A runnable Xbox console program, loaded over the network by kos-tool's
 # xbox-load-ip.
 #
-# There is no KOS Xbox arch/build environment yet, so this does NOT use kos-cc /
-# Makefile.rules like the Dreamcast/PS2 examples. It drives the i686-pc-xbox
-# cross toolchain directly, following kos-tool's guest ABI: link a PE image at
-# the guest load address, then objcopy it to ELF for the loader to consume.
+# This is a deliberately freestanding loader diagnostic rather than a
+# KOS-linked example. It uses the cross tools selected by environ.sh while
+# still following kos-tool's guest ABI: link a PE image at the guest load
+# address, then objcopy it to ELF for the loader to consume.
 
-XBOX_TOOLCHAIN ?= /opt/toolchains/xbox/i686-pc-xbox
 XBOX_TARGET    ?= i686-pc-xbox
-CC      = $(XBOX_TOOLCHAIN)/bin/$(XBOX_TARGET)-gcc
-OBJCOPY = $(XBOX_TOOLCHAIN)/bin/$(XBOX_TARGET)-objcopy
+CC      = $(if $(KOS_CC),$(KOS_CC),$(XBOX_TARGET)-gcc)
+OBJCOPY = $(if $(KOS_OBJCOPY),$(KOS_OBJCOPY),$(XBOX_TARGET)-objcopy)
 
 # Memory map -- must match kos-tool's mk/memory.mk:
 #   XBOX_KOSLOAD_BASE   loader's guest-facing header (magic + syscall ptr)
