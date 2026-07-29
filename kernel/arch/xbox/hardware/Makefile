@@ -1,9 +1,9 @@
 # KallistiOS ##version##
 #
-# arch/xbox Makefile
+# arch/xbox/hardware/Makefile
 #
 
-SUBDIRS = kernel hardware
+SUBDIRS = usb
 
 include $(KOS_BASE)/Makefile.rules
 
