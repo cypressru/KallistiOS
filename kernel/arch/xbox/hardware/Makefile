@@ -3,9 +3,9 @@
 # arch/xbox/hardware/Makefile
 #
 
+# MCPX legacy block
+OBJS = rtc.o
+
 SUBDIRS = usb
 
-include $(KOS_BASE)/Makefile.rules
-
-all: subdirs
-clean: clean_subdirs
+include $(KOS_BASE)/Makefile.prefab
