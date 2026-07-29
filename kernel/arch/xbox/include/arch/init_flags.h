@@ -2,6 +2,7 @@
 
    arch/xbox/include/arch/init_flags.h
    Copyright (C) 2026 Andress Barajas
+   Copyright (C) 2026 Cypress
 
 */
 

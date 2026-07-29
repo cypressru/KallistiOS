@@ -2,6 +2,7 @@
 
    arch/xbox/kernel/startup.S
    Copyright (C) 2026 Andress Barajas
+   Copyright (C) 2026 Cypress
 
    Entry point and C-runtime bootstrap for the original Microsoft Xbox.
 

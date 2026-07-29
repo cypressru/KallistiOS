@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/include/arch/exec.h
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 */
 
 /** \file    arch/exec.h

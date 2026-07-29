@@ -3,6 +3,7 @@
    examples/dreamcast/basic/threading/atomics.c
 
    Copyright (C) 2023 Falco Girgis
+   Copyright (C) 2026 Cypress
 
    This file serves as both an example of and a validation test for the
    C11 atomics support provided by the SH-GCC toolchain and KOS. It

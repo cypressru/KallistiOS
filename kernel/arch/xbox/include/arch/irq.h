@@ -5,6 +5,7 @@
    Copyright (C) 2024 Paul Cercueil
    Copyright (C) 2024 Falco Girgis
    Copyright (C) 2026 Andress Barajas
+   Copyright (C) 2026 Cypress
 
 */
 

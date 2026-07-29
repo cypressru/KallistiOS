@@ -2,6 +2,7 @@
 
    general_pthread_test.c
    Copyright (C) 2023 Lawrence Sebald
+   Copyright (C) 2026 Cypress
 
    Adapted from the Dreamcast pthread example for platforms without video or
    controller drivers. The pthread tests themselves remain architecture

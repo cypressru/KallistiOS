@@ -4,6 +4,7 @@
 
    Copyright (C) 2024 Eric Fradella
    Copyright (C) 2024 Falco Girgis
+   Copyright (C) 2026 Cypress
 
    Concurrency example that creates a "reentrant mutex" (aka recursive mutex)
    on top of KOS's basic mutex.

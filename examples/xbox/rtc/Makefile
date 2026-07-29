@@ -1,6 +1,7 @@
 # KallistiOS ##version##
 #
 # examples/xbox/rtc/Makefile
+# Copyright (C) 2026 Cypress
 #
 
 TARGET = rtc_test.elf

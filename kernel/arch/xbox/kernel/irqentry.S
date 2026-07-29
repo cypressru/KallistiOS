@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/kernel/irqentry.S
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 
    IA-32 exception entry. The per-vector stubs normalize hardware and
    synthetic error-code frames before saving into struct irq_context.

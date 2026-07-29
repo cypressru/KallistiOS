@@ -4,6 +4,7 @@
 
    Copyright (C) 2023 Colton Pawielski
    Copyright (C) 2023 Falco Girgis
+   Copyright (C) 2026 Cypress
 
    A simple example showing off thread local variables
 

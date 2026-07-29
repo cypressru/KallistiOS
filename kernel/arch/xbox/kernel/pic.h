@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/kernel/pic.h
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 */
 
 #ifndef __ARCH_XBOX_KERNEL_PIC_H

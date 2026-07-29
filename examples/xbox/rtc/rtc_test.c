@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    rtc_test.c
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 
 */
 

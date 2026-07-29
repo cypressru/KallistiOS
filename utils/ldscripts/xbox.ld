@@ -2,6 +2,7 @@
 
    utils/ldscripts/xbox.ld
    Copyright (C) 2026 Andress Barajas
+   Copyright (C) 2026 Cypress
 
    GNU ld linker script for the original Microsoft Xbox.
 

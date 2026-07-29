@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    xbox/usb.h
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 */
 
 /** \file    xbox/usb.h

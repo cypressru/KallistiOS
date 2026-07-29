@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/kernel/thdswitch.S
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 
    Cooperative i386 context switch. Keep all offsets synchronized with
    struct irq_context and the static assertions in irq.c.

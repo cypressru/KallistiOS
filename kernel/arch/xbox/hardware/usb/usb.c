@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/hardware/usb/usb.c
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 */
 
 #include <arch/arch.h>

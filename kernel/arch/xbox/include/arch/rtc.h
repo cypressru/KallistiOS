@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/include/arch/rtc.h
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 */
 
 /** \file    arch/rtc.h
@@ -13,7 +13,7 @@
     level standard C functions, like time(), rather than these when simply
     needing to fetch the current system time.
 
-    \author The KallistiOS Contributors
+    \author Cypress
 */
 
 /* Keep this include above the macro guards */

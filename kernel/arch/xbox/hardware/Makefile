@@ -1,6 +1,7 @@
 # KallistiOS ##version##
 #
 # arch/xbox/hardware/Makefile
+# Copyright (C) 2026 Cypress
 #
 
 # MCPX legacy block

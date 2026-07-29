@@ -3,6 +3,7 @@
     barrier.c
 
     Copyright (c) 2023 Falco Girgis
+    Copyright (C) 2026 Cypress
 
     kthread Barrier Example and Test
 

@@ -4,6 +4,7 @@
 
    Copyright (C) 2000-2002 Megan Potter
    Copyright (C) 2024 Falco Girgis
+   Copyright (C) 2026 Cypress
 
    A simple thread example
 

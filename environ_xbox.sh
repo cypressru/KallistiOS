@@ -1,4 +1,5 @@
 # KallistiOS environment variable settings for the original Xbox platform.
+# Copyright (C) 2026 Cypress
 
 # Use the retail Xbox as the default subarchitecture.
 if [ -z "${KOS_SUBARCH}" ] ; then

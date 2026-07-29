@@ -3,6 +3,7 @@
    spinlock_test.c
 
    Copyright (C) 2023 Falco Girgis
+   Copyright (C) 2026 Cypress
 
     This file is a simple example of the different
     ways in which to use a spinlock. It serves two

@@ -1,7 +1,7 @@
 /* KallistiOS ##version##
 
    arch/xbox/hardware/usb/ohci.h
-   Copyright (C) 2026 The KallistiOS Contributors
+   Copyright (C) 2026 Cypress
 */
 
 #ifndef __XBOX_USB_OHCI_H
