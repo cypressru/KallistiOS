@@ -18,7 +18,9 @@
 #define XBOX_TSC_NUMERATOR_HZ 2200000000ULL
 #define XBOX_TSC_DENOMINATOR  3ULL
 
-#define XBOX_PIT_FREQUENCY_HZ 1193182ULL
+/* The Xbox MCPX timer input is nominally 1.125 MHz, rather than the
+   1.193182 MHz clock used by a legacy PC-compatible PIT. */
+#define XBOX_PIT_FREQUENCY_HZ 1125000ULL
 #define XBOX_PIT_CHANNEL0     0x40U
 #define XBOX_PIT_COMMAND      0x43U
 #define XBOX_PIT_CHANNEL0_LOHI (3U << 4)

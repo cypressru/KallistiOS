@@ -519,10 +519,12 @@ static void *usb_worker(void *argument) {
     mutex_lock(&usb_state.lock);
     usb_poll_root_ports();
     usb_hub_poll_all();
-    usb_state.initial_scan_complete = true;
+    atomic_store_explicit(&usb_state.initial_scan_complete, true,
+                          memory_order_release);
     mutex_unlock(&usb_state.lock);
 
-    while(!usb_state.stop_requested) {
+    while(!atomic_load_explicit(&usb_state.stop_requested,
+                                memory_order_acquire)) {
         mutex_lock(&usb_state.lock);
         usb_poll_root_ports();
         usb_hub_poll_all();
@@ -540,6 +542,8 @@ int usb_init(void) {
     if(usb_state.initialized)
         return -1;
     memset(&usb_state, 0, sizeof(usb_state));
+    atomic_init(&usb_state.stop_requested, false);
+    atomic_init(&usb_state.initial_scan_complete, false);
     usb_state.next_address = 1U;
     if(mutex_init(&usb_state.lock, MUTEX_TYPE_NORMAL) != 0)
         return -1;
@@ -580,7 +584,8 @@ int usb_init(void) {
     return 0;
 
 fail:
-    usb_state.stop_requested = true;
+    atomic_store_explicit(&usb_state.stop_requested, true,
+                          memory_order_release);
     if(usb_state.worker) {
         thd_join(usb_state.worker, NULL);
         usb_state.worker = NULL;
@@ -598,7 +603,8 @@ void usb_shutdown(void) {
     if(!usb_state.initialized)
         return;
 
-    usb_state.stop_requested = true;
+    atomic_store_explicit(&usb_state.stop_requested, true,
+                          memory_order_release);
     if(usb_state.worker) {
         thd_join(usb_state.worker, NULL);
         usb_state.worker = NULL;
@@ -623,7 +629,8 @@ int usb_wait_scan(unsigned int timeout_ms) {
 
     if(!usb_state.initialized)
         return -1;
-    while(!usb_state.initial_scan_complete) {
+    while(!atomic_load_explicit(&usb_state.initial_scan_complete,
+                                memory_order_acquire)) {
         if(timeout_ms && timer_ms_gettime64() >= deadline)
             return -1;
         thd_sleep(1U);

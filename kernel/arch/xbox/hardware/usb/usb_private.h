@@ -9,6 +9,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdatomic.h>
 #include <stdint.h>
 
 #include <kos/mutex.h>
@@ -209,8 +210,8 @@ struct xbox_controller {
 typedef struct usb_global_state {
     mutex_t lock;
     bool initialized;
-    volatile bool stop_requested;
-    volatile bool initial_scan_complete;
+    atomic_bool stop_requested;
+    atomic_bool initial_scan_complete;
     uint8_t next_address;
     kthread_t *worker;
     struct xbox_usb_host hosts[USB_HOST_COUNT];
