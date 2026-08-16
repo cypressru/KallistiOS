@@ -39,6 +39,7 @@
 #include <arch/rtc.h>
 #include <arch/irq.h>
 
+#include <kos/mutex.h>
 #include <kos/timer.h>
 
 #include <errno.h>
@@ -129,6 +130,12 @@ static uint8_t rtc_dow_base;
 static bool rtc_dow_known;
 
 static bool rtc_initialized;
+
+/* Serialize complete calendar transactions. The low-level index/data helpers
+   only protect a single register access, while coherent reads and RTC writes
+   span several registers. arch_rtc_init() runs before the thread system and
+   deliberately uses the unlocked helpers directly. */
+static mutex_t rtc_lock = MUTEX_INITIALIZER;
 
 static inline void rtc_out8(uint16_t port, uint8_t value) {
     __asm__ volatile("outb %0, %1" : : "a"(value), "Nd"(port) : "memory");
@@ -390,8 +397,7 @@ static bool rtc_read_fields(rtc_fields_t *out) {
     return false;
 }
 
-/* Returns the date/time value as a UNIX epoch time stamp */
-time_t arch_rtc_unix_secs(void) {
+static time_t rtc_unix_secs_unlocked(void) {
     rtc_fields_t fields;
 
     if(!rtc_initialized || !rtc_read_fields(&fields)) {
@@ -409,6 +415,17 @@ time_t arch_rtc_unix_secs(void) {
     }
 
     return rtc_fields_to_unix(&fields);
+}
+
+/* Returns the date/time value as a UNIX epoch time stamp */
+time_t arch_rtc_unix_secs(void) {
+    time_t result;
+
+    mutex_lock(&rtc_lock);
+    result = rtc_unix_secs_unlocked();
+    mutex_unlock(&rtc_lock);
+
+    return result;
 }
 
 /* Sets the date/time value from a UNIX epoch time stamp,
@@ -442,6 +459,8 @@ int arch_rtc_set_unix_secs(time_t secs) {
         errno = EINVAL;
         return -1;
     }
+
+    mutex_lock(&rtc_lock);
 
     days = (int64_t)secs / 86400;
     remainder = (uint32_t)((int64_t)secs - days * 86400);
@@ -520,7 +539,9 @@ int arch_rtc_set_unix_secs(time_t secs) {
        time that has elapsed since boot from the new time we've just set.
     */
     timer_ms_gettime(&secs32, &msecs32);
-    xbox_boot_time = arch_rtc_unix_secs() - (time_t)secs32;
+    xbox_boot_time = rtc_unix_secs_unlocked() - (time_t)secs32;
+
+    mutex_unlock(&rtc_lock);
 
     return result;
 }

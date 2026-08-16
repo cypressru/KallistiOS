@@ -62,7 +62,12 @@ typedef struct xbox_controller xbox_controller_t;
 /** Return the number of currently attached XID game controllers. */
 size_t xbox_controller_count(void);
 
-/** Return the Nth currently attached XID game controller. */
+/** Return the Nth currently attached XID game controller.
+
+    The returned pointer remains valid only while the controller stays
+    attached. Discard it as soon as xbox_controller_is_connected() returns
+    false and enumerate again to obtain a newly attached controller.
+*/
 xbox_controller_t *xbox_controller_get(size_t index);
 
 /** Return whether a controller handle is currently connected. */
