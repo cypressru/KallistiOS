@@ -7,6 +7,5 @@
 #include <threads.h>
 
 int tss_create(tss_t *key, tss_dtor_t dtor) {
-    return kthread_key_create(key, dtor) ?
-           thrd_error : thrd_success;
+    return kthread_key_create(key, dtor) ? thrd_error : thrd_success;
 }
