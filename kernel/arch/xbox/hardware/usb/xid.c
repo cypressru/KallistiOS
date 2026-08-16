@@ -113,7 +113,7 @@ int usb_xid_bind(struct xbox_usb_device *device,
      * wheels (0x10), arcade sticks (0x20), light guns (0x50), the DVD
      * remote receiver (type 0x03), and Steel Battalion (type 0x80).
      * Leave those devices generically enumerated until dedicated drivers
-     * and public APIs are implemented; see hardware/usb/README.
+     * and public APIs are implemented.
      */
     if(usb_control_request(device, XID_REQUEST_TYPE_DESCRIPTOR,
                            USB_REQUEST_GET_DESCRIPTOR,

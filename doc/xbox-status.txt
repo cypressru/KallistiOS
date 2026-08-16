@@ -19,8 +19,8 @@ Xbox Input Device gamepads, hotplug, the MCPX real-time clock, the SMBus host,
 and a restricted SMC status interface. The shared KOSLoad code supplies debug
 I/O, the host filesystem, and loader exit support.
 
-Examples under examples/xbox exercise loader startup, threading, the RTC, and
-SMC status. Controller testing uses the external interactive hardware tests.
+Examples under examples/xbox exercise threading, the RTC, and SMC status.
+Controller testing uses the external interactive hardware tests.
 
 Limitations
 -----------
@@ -54,7 +54,7 @@ c22f26c99805430e1b29ea9081929240f20cf540. The following checks pass:
     clean Xbox KOS build
     all 16 public Xbox headers compiled as C and C++
     all 11 threading examples and loader ELF layout checks
-    hello, RTC, and SMC example builds
+    RTC and SMC example builds
 
 The upstream merge still requires xemu and retail-console testing. A successful
 cross-build is not evidence of correct runtime behavior.
