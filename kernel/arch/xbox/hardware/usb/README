@@ -1,0 +1,35 @@
+Xbox USB support
+================
+
+The USB code drives both MCPX OHCI controllers, enumerates root and external
+hubs, and supports control and interrupt transfers. Devices without a class
+driver remain available through the generic device interface.
+
+The XID driver supports standard Microsoft gamepads:
+
+    Duke          type 0x01, subtype 0x01
+    Controller S  type 0x01, subtype 0x02
+
+Input reports include the digital controls, pressure-sensitive face buttons,
+triggers, and signed stick axes. Both rumble motors are supported.
+
+Unsupported hardware
+--------------------
+
+The USB implementation does not yet support bulk or isochronous transfers.
+Consequently, Xbox Memory Units, USB mass storage, the Xbox Live Communicator,
+and other audio devices are not supported. FATX and KOS block-device support
+are also absent.
+
+The following XID devices require separate drivers and public interfaces:
+
+    DVD Movie Playback Kit receiver       type 0x03
+    steering wheels                       subtype 0x10
+    arcade sticks and compatible pads     subtype 0x20
+    light guns                            subtype 0x50
+    Steel Battalion controller            type 0x80
+
+Karaoke microphones, HID devices, third-party adapters, and other
+title-specific accessories are not supported. New XID drivers must select
+devices by type, subtype, capabilities, and report sizes. Devices whose
+controls differ from a Duke or Controller S must not use xbox_controller_t.

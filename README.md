@@ -51,9 +51,9 @@ KallistiOS also features a package manager called [**_kos-ports_**](https://gith
 ## Getting Started
 A beginner's guide to development for the Sega Dreamcast along with detailed instructions for installing KOS and the required toolchains can be found on [dreamcast.wiki](https://dreamcast.wiki/Getting_Started_with_Dreamcast_development). Additional documentation can be found in the docs folder. 
 
-The experimental original Xbox port is documented in
-[doc/xbox-status.md](doc/xbox-status.md). It is incomplete and is not ready for
-general use.
+The experimental original Xbox port is described in
+[doc/xbox-status.txt](doc/xbox-status.txt). It is incomplete and is not ready
+for general use.
 
 ## Licensing
 KallistiOS itself is licensed under the BSD-like **KOS License**. **Attribution is not optional**. Additionally, this distribution contains code licensed under various free software licenses.

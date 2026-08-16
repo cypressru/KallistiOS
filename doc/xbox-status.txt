@@ -1,0 +1,60 @@
+Original Xbox port status
+=========================
+
+The original Xbox port is experimental and is not ready for general use. This
+file describes the xbox/native-bringup branch. External probes and uncommitted
+experiments are not part of the port.
+
+Implemented
+-----------
+
+The branch provides an i686-pc-xbox Binutils, GCC, and Newlib toolchain;
+PE/COFF linker support; KOS startup and shutdown; x86 descriptor tables and
+interrupt handling; a PIT scheduler timer; stack handling; compiler TLS; and
+integer, FPU, and SSE thread context switching. KOS, C11, and POSIX threading
+interfaces are available.
+
+Hardware support includes the two MCPX OHCI controllers, external USB hubs,
+Xbox Input Device gamepads, hotplug, the MCPX real-time clock, the SMBus host,
+and a restricted SMC status interface. The shared KOSLoad code supplies debug
+I/O, the host filesystem, and loader exit support.
+
+Examples under examples/xbox exercise loader startup, threading, the RTC, and
+SMC status. Controller testing uses the external interactive hardware tests.
+
+Limitations
+-----------
+
+KOS relies on the memory mappings established by the Xbox kernel and does not
+discover the complete physical memory map. There are no GPU, audio, storage,
+or network drivers in this branch.
+
+The normal build produces ELF files for a compatible loader. Native XBE
+packaging is not integrated into the KOS build.
+
+The shared KOSLoad implementation predates the August 2026 upstream dcload
+syscall-backend changes. Those changes must be reconciled before submission.
+
+Build
+-----
+
+Install the Xbox toolchain, set KOS_CC_BASE to its parent directory, and run:
+
+    source environ.sh
+    make
+
+The target is i686-pc-xbox and the default Xbox subarchitecture is retail.
+
+Verification
+------------
+
+The branch is based on upstream commit
+c22f26c99805430e1b29ea9081929240f20cf540. The following checks pass:
+
+    clean Xbox KOS build
+    all 16 public Xbox headers compiled as C and C++
+    all 11 threading examples and loader ELF layout checks
+    hello, RTC, and SMC example builds
+
+The upstream merge still requires xemu and retail-console testing. A successful
+cross-build is not evidence of correct runtime behavior.

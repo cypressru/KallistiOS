@@ -1,0 +1,30 @@
+Xbox loader hello example
+=========================
+
+This is a freestanding loader diagnostic. It prints "Hello, Xbox!" through
+kos-tool's xbox-load-ip service without linking against KOS. It is retained so
+the loader ABI can be tested independently of the KOS Xbox runtime.
+
+xbox-load-ip places its guest header at XBOX_KOSLOAD_BASE (0x00011000). The
+header contains the 0xdeadbeef magic value and a syscall entry point. start()
+checks the magic value, writes the message, and invokes the loader exit call.
+
+Build it with the toolchain selected by environ.sh:
+
+    make
+
+An explicit compiler prefix may also be supplied:
+
+    make XBOX_TARGET=/opt/toolchains/xbox/i686-pc-xbox/bin/i686-pc-xbox
+
+The PE/COFF hello.exe retains symbols for debugging. hello.elf is the stripped
+elf32-i386 image consumed by xbox-load-ip.
+
+Run xbox-load-ip on the console, then execute:
+
+    make run
+
+KOS-linked Xbox examples use the architecture startup code, Xbox linker
+script, shared KOSLoad driver, libc, and threading runtime. This example uses
+the raw loader interface and therefore helps distinguish loader problems from
+KOS runtime problems. Neither path provides a local video console yet.
