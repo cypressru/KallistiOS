@@ -16,7 +16,7 @@ worktrees.
 - OHCI USB host, hub enumeration, Xbox Input Device discovery, hotplug, and
   controller state polling
 - MCPX real-time clock reads and writes
-- SMBus transport and read-only SMC status queries
+- SMBus transport and safety-bounded SMC status queries
 - Shared `kosload` console, host filesystem, and loader-exit support
 
 The examples under `examples/xbox/` cover loader startup, threading, RTC, and

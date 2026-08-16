@@ -1,12 +1,12 @@
 /* KallistiOS ##version##
 
-   examples/dreamcast/basic/threading/atomics.c
+   examples/xbox/threading/atomics/atomics.c
 
    Copyright (C) 2023 Falco Girgis
    Copyright (C) 2026 Cypress
 
    This file serves as both an example of and a validation test for the
-   C11 atomics support provided by the SH-GCC toolchain and KOS. It
+   C11 atomics support provided by the i686 GCC toolchain and KOS. It
    demonstrates advanced compiler-aware concurrency in pure standard C.
 
    C11 atomics are an extremely convenient, easy-to-use concurrency
@@ -15,14 +15,9 @@
    mutex or synchronization primitive to prevent multiple threads from
    trying to modify the data simultaneously.
 
-   Atomics are also more efficient spatially on Dreamcast, because there is
-   no extra memory used for such additional mutexes to confer thread-safety
-   around such variables. In terms of runtime, they are implemented similarly
-   to mutexes, where interrupts are disabled around load/store/fetch operations.
-
-   Most of the back-end for atomics is provided by the compiler when using the
-   "-matomic-model=soft-imask" flag; however, KOS has to implement some of the
-   back-end for primitive types (64-bit types in particular) and generic structs.
+   The Xbox CPU implements the primitive atomic widths exercised below. GCC
+   emits those operations directly and calls KOS's generic atomic helpers for
+   objects, such as the large Buffer type, that are not lock-free.
 
 */
 

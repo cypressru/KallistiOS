@@ -11,7 +11,7 @@
    most x86 SMBus code assumes, so nothing about this layout is portable and
    no generic SMBus abstraction is offered. A public abstraction waits until a
    second in-tree consumer proves one is needed; today the only consumer is the
-   read-only SMC interface in smc.c.
+   status-focused SMC interface in smc.c.
 
    Measured properties this transport relies on, from a retail v1.6 console and
    xemu 0.8.136. Full evidence is in the external research notes:

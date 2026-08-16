@@ -27,9 +27,9 @@
    LINK_SPEC; 'start' is provided as an alias to match the Dreamcast naming.
 
    xbox.ld and arch_main() provide the companion image layout and C bootstrap.
-   Proper native-title shutdown/reboot must eventually go through the kernel
-   thunk table (HalReturnToFirmware). During loader-hosted bring-up,
-   arch_real_exit() restores the loader's stack and returns to its caller.
+   Native-title shutdown uses the isolated HalReturnToFirmware kernel thunk.
+   A loader-hosted guest instead uses arch_real_exit() to restore the loader's
+   stack and return to its caller.
 */
 
 /* Size of the private kernel stack reserved below, in bytes. */

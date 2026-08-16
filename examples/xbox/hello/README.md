@@ -1,14 +1,14 @@
 # Xbox "hello world"
 
-The first KOS example for the original Microsoft Xbox: a runnable console
-program that prints `Hello, Xbox!` over the network via kos-tool's
-`xbox-load-ip`.
+A freestanding loader diagnostic for the original Microsoft Xbox. It prints
+`Hello, Xbox!` over the network via kos-tool's `xbox-load-ip` without linking
+against KOS.
 
 ## How it works
 
-There is no KOS Xbox arch yet (no libc, no video/console driver), so this is a
-freestanding **guest** that talks straight to the loader, using the same ABI as
-kos-tool's own `console-test` / `xbox-video-test` examples:
+This deliberately remains a freestanding **guest** so it can test the loader
+ABI independently of the KOS Xbox runtime. It uses the same ABI as kos-tool's
+own `console-test` / `xbox-video-test` examples:
 
 - `xbox-load-ip` publishes a header at `XBOX_KOSLOAD_BASE` (`0x00011000`):
   the magic `0xdeadbeef` at `+0` and a syscall trampoline pointer at `+4`.
@@ -27,7 +27,7 @@ sections into guest memory:
 
 ```sh
 make                                                   # -> hello.elf
-make XBOX_TOOLCHAIN=/opt/toolchains/xbox/i686-pc-xbox  # explicit toolchain
+make XBOX_TARGET=/opt/toolchains/xbox/i686-pc-xbox/bin/i686-pc-xbox
 ```
 
 ## Run
@@ -42,8 +42,8 @@ make run          # = kos-tool -x hello.elf
 
 ## Relationship to the KOS port
 
-This is the **loader-guest** path, which works today. The eventual
-**KOS-native** path — a program linked with `kernel/arch/xbox`'s `startup.S`
-and `utils/ldscripts/xbox.ld`, using a shared kosload console driver instead of
-poking the loader header directly — depends on the arch bring-up still in
-progress (`arch_main`, BSS clear, video/console drivers).
+This example exercises the raw **loader-guest** path. KOS-linked Xbox examples
+now use `kernel/arch/xbox`'s `startup.S`, `utils/ldscripts/xbox.ld`, the shared
+KOSLoad console driver, libc, and the threading runtime. Keeping this smaller
+diagnostic is useful because it can distinguish loader failures from KOS
+runtime failures. Neither path currently provides a local video console.

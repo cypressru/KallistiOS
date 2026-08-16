@@ -7,11 +7,18 @@
 /** \file    arch/kos.h
     \brief   Xbox additions to the universal KOS header.
 
-    Xbox-specific public device APIs will be included here as their native
-    drivers are added. Core architecture APIs are already included by kos.h.
+    This is included by the universal kos.h header. It collects the public
+    Xbox device interfaces and the shared loader services used by this port.
 */
 
 #ifndef __ARCH_XBOX_KOS_H
 #define __ARCH_XBOX_KOS_H
+
+#include <kos/fs_kosload.h>
+#include <kos/fs_koslsocket.h>
+
+#include <xbox/smc.h>
+#include <xbox/usb.h>
+#include <xbox/usb/controller.h>
 
 #endif /* __ARCH_XBOX_KOS_H */
